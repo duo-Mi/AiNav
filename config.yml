@@ -43,9 +43,9 @@ content:
         - name: Perplexity AI
           description: Perplexity AI 是一个AI驱动的搜索工具。
           url: https://www.perplexity.ai/?login-source=oneTapHome
-        - name: Sierra
-          description: 一款对话式人工智能平台，旨在提升客户体验。
-          url: https://sierra.ai/product
+        # - name: Sierra
+        #   description: 一款对话式人工智能平台，旨在提升客户体验。
+        #   url: https://sierra.ai/product
         - name: 海螺AI
           description: 一款开创性文本生成视频和音乐AI工具
           url: https://hailuoai.com/
