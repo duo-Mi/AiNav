@@ -39,6 +39,12 @@
 
         .page-container {
             transition: visibility 0s, opacity 0.5s linear;
+            overflow-y: scroll;
+        }
+
+        .page-container::-webkit-scrollbar {
+            display: none;
+            /* 隐藏滚动条 */
         }
 
         .hidden {
@@ -714,29 +720,44 @@
             const body = document.body;
             const pageContainer = document.querySelector('.page-container');
             const video = document.createElement('video');
-            const videoSources = ['./video/hailuoAI.mp4', './video/perplexity.mp4']; // 替换为你的视频路径
+            const videoSources = [
+                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/hailuoAI.mp4',
+                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/perplexity.mp4',
+                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/o1%E5%92%8Ccanvas.mp4',
+                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/copilot.mp4'
+            ]; // 替换为你的视频路径
             let currentVideoIndex = 0;
 
             video.src = videoSources[currentVideoIndex];
+            video.autoplay = true;
             video.style.position = 'fixed';
             video.style.top = '0';
             video.style.left = '0';
             video.style.width = '100%';
             video.style.height = '100%';
-            video.style.zIndex = '9999';
+            video.style.zIndex = '9999'
             video.classList.add('video-hidden');
             body.appendChild(video);
             video.addEventListener('ended', function () {
                 currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
                 video.src = videoSources[currentVideoIndex];
-                video.play();
+                video.play().then(res => {
+                    video.autoplay = true;
+                }
+                    , error => {
+                        console.error('Error attempting to play the video:', error);
+                    });
             });
             function hideContent() {
                 pageContainer.classList.remove('visible');
                 pageContainer.classList.add('hidden');
                 video.classList.remove('video-hidden');
                 video.classList.add('video-visible');
-                video.play();
+                video.play().then(res => {
+                    video.autoplay = true;
+                }, error => {
+                    console.error('Error attempting to play the video:', error);
+                });
             }
 
             function showContent() {
@@ -754,12 +775,25 @@
             }
 
             window.addEventListener('mousemove', resetTimer);
-            window.addEventListener('scroll', resetTimer);
+            // window.addEventListener('scroll', () => {
+            //     const scrollHeight = document.documentElement.scrollHeight;
+            //     const scrollTop = window.scrollY + window.innerHeight;
+
+            //     if (scrollTop >= scrollHeight) { // 滚动到页面底部
+            //         window.scrollTo(0, scrollTop);
+            //         hideContent(); // 隐藏内容并显示视频
+            //     }
+
+            //     resetTimer(); // 重置定时器
+            // });
+
             window.addEventListener('keydown', resetTimer);
 
             // 初始化时立即隐藏内容并显示视频
             hideContent();
             resetTimer(); // 初始化定时器
+            // 锁定滚动位置
+
         });
     </script>
     <!-- Bottom Scripts -->
