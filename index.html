@@ -36,6 +36,34 @@
             height: 150px;
             font-size: 16px;
         }
+
+        .page-container {
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        video {
+            transition: opacity 0.5s linear;
+            pointer-events: none;
+            /* 确保视频不会阻止鼠标事件 */
+        }
+
+        .video-visible {
+            opacity: 1;
+        }
+
+        .video-hidden {
+            opacity: 0;
+        }
     </style>
     <link rel="shortcut icon" href="https://github.com/duo-mi.png?size=40">
 
@@ -681,6 +709,58 @@
         }
 
         window.addEventListener('scroll', onScroll);
+        document.addEventListener('DOMContentLoaded', function () {
+            let timeout;
+            const body = document.body;
+            const pageContainer = document.querySelector('.page-container');
+            const video = document.createElement('video');
+            const videoSources = ['./video/hailuoAI.mp4', './video/perplexity.mp4']; // 替换为你的视频路径
+            let currentVideoIndex = 0;
+
+            video.src = videoSources[currentVideoIndex];
+            video.style.position = 'fixed';
+            video.style.top = '0';
+            video.style.left = '0';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.zIndex = '9999';
+            video.classList.add('video-hidden');
+            body.appendChild(video);
+            video.addEventListener('ended', function () {
+                currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+                video.src = videoSources[currentVideoIndex];
+                video.play();
+            });
+            function hideContent() {
+                pageContainer.classList.remove('visible');
+                pageContainer.classList.add('hidden');
+                video.classList.remove('video-hidden');
+                video.classList.add('video-visible');
+                video.play();
+            }
+
+            function showContent() {
+                pageContainer.classList.remove('hidden');
+                pageContainer.classList.add('visible');
+                video.classList.remove('video-visible');
+                video.classList.add('video-hidden');
+                video.pause();
+            }
+
+            function resetTimer() {
+                clearTimeout(timeout);
+                showContent();
+                timeout = setTimeout(hideContent, 10000); // 10秒
+            }
+
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('scroll', resetTimer);
+            window.addEventListener('keydown', resetTimer);
+
+            // 初始化时立即隐藏内容并显示视频
+            hideContent();
+            resetTimer(); // 初始化定时器
+        });
     </script>
     <!-- Bottom Scripts -->
     <script src="https://fastly.jsdelivr.net/gh/x1ah/webstack-assets@master/assets/js/bootstrap.min.js"></script>
