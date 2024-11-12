@@ -49,10 +49,19 @@ content:
         - name: 海螺AI
           description: 一款开创性文本生成视频和音乐AI工具
           url: https://hailuoai.com/
-
-        # - name: Anthropic
-        #   description: 一款专注于安全性和可靠性AI 模型产品
-        #   url: https://www.anthropic.com/
+          
+        - name: ChatGPT
+          description: 一款基于 OpenAI 的 GPT（即生成预训练式 Transformer）模型开发的大型语言模型。
+          url: https://chatgpt.com/
+          
+        - name: Anthropic
+          description: 一款专注于安全性和可靠性AI 模型产品
+          url: https://www.anthropic.com/
+          
+        - name: NotebookLM 
+          description: 基于 Gemini 1.5 打造的一款出色的工具，可助您理解您最为关心的信息
+          url: https://notebooklm.google/
+       
     - name: AI编程
       sites:
         - name: Bolt
