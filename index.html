@@ -767,67 +767,67 @@
             }
         }
 
-        window.addEventListener('scroll', onScroll);
-        document.addEventListener('DOMContentLoaded', function () {
-            let timeout;
-            const body = document.body;
-            const pageContainer = document.querySelector('.page-container');
-            const video = document.createElement('video');
-            const videoSources = [
-                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/hailuoAI.mp4',
-                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/perplexity.mp4',
-                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/o1%E5%92%8Ccanvas.mp4',
-                'https://ai-product-show.oss-cn-beijing.aliyuncs.com/copilot.mp4'
-            ]; // 替换为你的视频路径
-            let currentVideoIndex = 0;
+        // window.addEventListener('scroll', onScroll);
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     let timeout;
+        //     const body = document.body;
+        //     const pageContainer = document.querySelector('.page-container');
+        //     const video = document.createElement('video');
+        //     const videoSources = [
+        //         'https://ai-product-show.oss-cn-beijing.aliyuncs.com/hailuoAI.mp4',
+        //         'https://ai-product-show.oss-cn-beijing.aliyuncs.com/perplexity.mp4',
+        //         'https://ai-product-show.oss-cn-beijing.aliyuncs.com/o1%E5%92%8Ccanvas.mp4',
+        //         'https://ai-product-show.oss-cn-beijing.aliyuncs.com/copilot.mp4'
+        //     ]; // 替换为你的视频路径
+        //     let currentVideoIndex = 0;
 
-            video.src = videoSources[currentVideoIndex];
-            video.autoplay = true;
-            video.style.position = 'fixed';
-            video.style.top = '0';
-            video.style.left = '0';
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.zIndex = '9999'
-            video.classList.add('video-hidden');
-            body.appendChild(video);
-            video.addEventListener('ended', function () {
-                currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
-                video.src = videoSources[currentVideoIndex];
-                video.play().then(res => {
-                    video.autoplay = true;
-                }
-                    , error => {
-                        console.error('Error attempting to play the video:', error);
-                    });
-            });
-            function hideContent() {
-                pageContainer.classList.remove('visible');
-                pageContainer.classList.add('hidden');
-                video.classList.remove('video-hidden');
-                video.classList.add('video-visible');
-                video.play().then(res => {
-                    video.autoplay = true;
-                }, error => {
-                    console.error('Error attempting to play the video:', error);
-                });
-            }
+        //     video.src = videoSources[currentVideoIndex];
+        //     video.autoplay = true;
+        //     video.style.position = 'fixed';
+        //     video.style.top = '0';
+        //     video.style.left = '0';
+        //     video.style.width = '100%';
+        //     video.style.height = '100%';
+        //     video.style.zIndex = '9999'
+        //     video.classList.add('video-hidden');
+        //     body.appendChild(video);
+        //     video.addEventListener('ended', function () {
+        //         currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+        //         video.src = videoSources[currentVideoIndex];
+        //         video.play().then(res => {
+        //             video.autoplay = true;
+        //         }
+        //             , error => {
+        //                 console.error('Error attempting to play the video:', error);
+        //             });
+        //     });
+        //     function hideContent() {
+        //         pageContainer.classList.remove('visible');
+        //         pageContainer.classList.add('hidden');
+        //         video.classList.remove('video-hidden');
+        //         video.classList.add('video-visible');
+        //         video.play().then(res => {
+        //             video.autoplay = true;
+        //         }, error => {
+        //             console.error('Error attempting to play the video:', error);
+        //         });
+        //     }
 
-            function showContent() {
-                pageContainer.classList.remove('hidden');
-                pageContainer.classList.add('visible');
-                video.classList.remove('video-visible');
-                video.classList.add('video-hidden');
-                video.pause();
-            }
+        //     function showContent() {
+        //         pageContainer.classList.remove('hidden');
+        //         pageContainer.classList.add('visible');
+        //         video.classList.remove('video-visible');
+        //         video.classList.add('video-hidden');
+        //         video.pause();
+        //     }
 
-            function resetTimer() {
-                clearTimeout(timeout);
-                showContent();
-                timeout = setTimeout(hideContent, 10000); // 10秒
-            }
+        //     function resetTimer() {
+        //         clearTimeout(timeout);
+        //         showContent();
+        //         timeout = setTimeout(hideContent, 10000); // 10秒
+        //     }
 
-            window.addEventListener('mousemove', resetTimer);
+        //     window.addEventListener('mousemove', resetTimer);
             // window.addEventListener('scroll', () => {
             //     const scrollHeight = document.documentElement.scrollHeight;
             //     const scrollTop = window.scrollY + window.innerHeight;
