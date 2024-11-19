@@ -51,7 +51,7 @@ content:
           url: https://hailuoai.com/
           
         - name: ChatGPT
-          description: 一款基于 OpenAI 的 GPT（即生成预训练式 Transformer）模型开发的大型语言模型。
+          description: 一款基于 OpenAI 的 GPT模型开发的大型语言模型。
           url: https://chatgpt.com/
           
         - name: Anthropic
